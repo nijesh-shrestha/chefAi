@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body text-char dark:text-flour transition-colors duration-200;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* Signature element: a torn recipe-card stitch line, inset from the card's
+     real border. Reserved for RecipeCard only, so it stays a deliberate
+     accent rather than a decoration applied everywhere. */
+  .card-stitch {
+    position: relative;
+  }
+
+  .card-stitch::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px dashed currentColor;
+    opacity: 0.18;
+    border-radius: 0.75rem;
+    pointer-events: none;
+  }
+
+  .page-enter {
+    animation: page-fade-in 0.25s ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
